@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8" />
+	<head>
+		
+		<title>It's all about the flow</title>
+		
+		<style>
+		.Instructions {
+		
+			font-family: Arial;
+			font-size: 12px;
+			font-style: italic;
+			color: #888888;
+			padding: 50px;
+			width: 350px;
+		}
+		
+		.Text {
+		
+			font-family: Arial;
+			font-size: 32px;
+			position: absolute;
+		}
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<div class="Instructions">
+		
+			Textgrupperna nedan skall gå att dra och släppa på linjen på sidan för att bilda meningen "It's all about the flow". 
+			Man ska själv kunna välja vilket ord som först släpps på linjen, därefter ska endast föregående eller följande ord godkännas vid släpp.
+			<br /><br />
+			Visuell indikation önskas på var och om man får släppa det ord man drar, samt när man har släppt på rätt ställe. Gärna animerat.
+			<br /><br />
+			Implementationen ska fungera i IE10+, samt senaste släppta versionerna av Firefox, Safari och Chrome på PC. Den skall även fungera med touch på en eller flera av följande platformar: Win 8, iOS, Android.
+			<br /><br />
+			Externa bibliotek (ex JQuery) är EJ tillåtna.
+			
+		</div>
+	
+		<div id="t3" class="Text" style="left: 89px; top: 436px;">It's</div>
+		<div id="t1" class="Text" style="left: 117px; top: 378px;">all</div>
+		<div id="t2" class="Text" style="left: 163px; top: 492px;">about</div>
+		<div id="t0" class="Text" style="left: 144px; top: 440px;">the</div>
+		<div id="t4" class="Text" style="left: 194px; top: 427px;">flow</div>
+		
+		<div id="theLine" style="position: absolute; top: 600px; left: 50px; width: 300px; height: 1px; background-color: #cccccc;"></div>
+		
+	</body>
+
+</html>
