@@ -6,8 +6,13 @@
 		<title>It's all about the flow</title>
 		
 		<style>
-		.Instructions {
 		
+		.Text, .Target {
+			font-family: Arial;
+			font-size: 32px;
+		}
+		
+		.Instructions {
 			font-family: Arial;
 			font-size: 12px;
 			font-style: italic;
@@ -17,12 +22,21 @@
 		}
 		
 		.Text {
-		
-			font-family: Arial;
-			font-size: 32px;
 			position: absolute;
 		}
+		
+		.Target {
+			float: left;
+			padding-right: 5px;
+			position: relative;
+			/*visibility: hidden; */
+		}
+		
+		.overcorrecttarget {
+			border: 2px dashed #000;
+		}
 		</style>
+		<script src="script.js"></script>
 		
 	</head>
 	
@@ -41,12 +55,12 @@
 			
 		</div>
 	
-		<div id="t3" class="Text" style="left: 89px; top: 436px;">It's</div>
-		<div id="t1" class="Text" style="left: 117px; top: 378px;">all</div>
-		<div id="t2" class="Text" style="left: 163px; top: 492px;">about</div>
-		<div id="t0" class="Text" style="left: 144px; top: 440px;">the</div>
-		<div id="t4" class="Text" style="left: 194px; top: 427px;">flow</div>
-		
+		<div id="t3" class="Text" draggable="true" style="left: 89px; top: 436px;">It's</div>
+		<div id="t1" class="Text" draggable="true" style="left: 117px; top: 378px;">all</div>
+		<div id="t2" class="Text" draggable="true" style="left: 163px; top: 492px;">about</div>
+		<div id="t0" class="Text" draggable="true" style="left: 144px; top: 440px;">the</div>
+		<div id="t4" class="Text" draggable="true" style="left: 194px; top: 427px;">flow</div>
+
 		<div id="theLine" style="position: absolute; top: 600px; left: 50px; width: 300px; height: 1px; background-color: #cccccc;"></div>
 		
 	</body>
