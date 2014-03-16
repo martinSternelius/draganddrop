@@ -1,19 +1,19 @@
+// Variable used to store the element currently being dragged
 var dragged = null;
 
 function handleDragStart(e) {
 	this.style.opacity = "0.4";
-
-	dragged = this;
-
+	
 	e.dataTransfer.effectAllowed = "move";
-	e.dataTransfer.setData("text/html", this.innerHTML);
+	e.dataTransfer.setData('text', this.innerHTML);
+	dragged = this;
 }
 
 function handleDragOver(e) {
 	if (e.preventDefault) {
-    	e.preventDefault();
+		e.preventDefault();
 	}
-
+	
 	if (this.target_for == dragged && this.available !== false) {
 		e.dataTransfer.dropEffect = "move";
 	} else {
@@ -23,10 +23,15 @@ function handleDragOver(e) {
 }
 
 function handleDragEnter(e) {
+	if (e.preventDefault) {
+		e.preventDefault();
+	}
 	
 	if (this.target_for == dragged && this.available !== false) {
 		this.classList.add("overcorrecttarget");
 	}
+	
+	return false;
 }
 
 function handleDragLeave(e) {
@@ -34,7 +39,7 @@ function handleDragLeave(e) {
 }
 
 function handleDragEnd(e) {
-	dragged.style.opacity = "1";
+	this.style.opacity = "1";
 }
 
 window.onload = function () {
@@ -77,27 +82,36 @@ window.onload = function () {
 	var targets = [];
 	var target_parent = document.querySelector("div#theLine");
 	
+	// Create a drop target for each word
 	[].forEach.call(words, function(word, index) {
-		targets.push(new Target(word, index, target_parent));
+		target = new Target(word, index, target_parent);
+		targets.push(target);
 		
 		word.addEventListener("dragstart", handleDragStart, false);
 		word.addEventListener("dragend", handleDragEnd, false);
 	});
 
 	function handleDrop(e) {
+		// Stop browser from redirecting
+		e.preventDefault();
+		
 		this.classList.remove("overcorrecttarget");
+		
+		// If word has been dropped in correct position
 		if (this.target_for == dragged && this.available !== false) {
 			this.completed = true;
-			// Word has been dropped in correct position
+			
+			// First disable all word targets, then we enable only those that should be available
 			[].forEach.call(targets, function(target_obj) {
 				target_obj.word_target.available = false;
 			});
-			dragged.style.display = "none";
+			
+			// Set target HTML to the source element HTML, then remove the source element
+			this.innerHTML = dragged.innerHTML;
+			dragged.parentNode.removeChild(dragged);
 			
 			activateClosestNextTarget(this);
 			activateClosestPreviousTarget(this);
-			
-			this.innerHTML = e.dataTransfer.getData("text/html");
 		}
 	}
 	
